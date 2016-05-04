@@ -1,0 +1,10 @@
+# Olaf Krawczyk
+# 28.04.2016
+
+
+Program liczący całkę 1/x w przedziale od 0.001 do 1000 z wykorzystaniem FPU. 
+
+Kompilacja programu za pomocą make, testowanie make test i czyszczenie make clean.
+Program prezentuje wynik całkowania w zależności od ilości podanych przedziałów, trybów zaokrągleń oraz ustawień precyzji w układzie FPU. 
+
+

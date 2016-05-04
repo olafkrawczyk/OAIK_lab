@@ -1,0 +1,40 @@
+# Olaf Krawczyk 218164
+# 06.04.2016
+
+Zajęcia lab 3
+
+Zad1.
+	Uruchomienie funkcji printf oraz scanf w programie asemblerowym.
+	Kody źródłowe tych programów znajdują się w plikach printf_lab3.s
+	oraz scanf_lab3.s. 
+	Program printf_lab3.s wypisuje na STDOUT napis "Hello world" za pomocą
+	funkcji z printf pobranej z biblioteki języka C. Parametry funkcji w printf przekazujemy za pomocą rejestrów. Pierwszy parametr znajduje się w rejestrze %rdi. Funkcję wywołujemy instrukcją call printf. Poczas kompilacji za pomocą gcc odpowiednie biblioteki są automatycznie linkowane/
+
+	Wywołanie funkcji scanf przebiega identycznie, z tym, że jej drugi parametr przekazywany jest w rejestrze %rsi.
+
+Zad2.
+	Program do zadania drugiego wywołuje funkcje printf wywołaną przez kod asemblera. Program wypisuje czasy działania tych funkcji.
+
+
+Ramka stosu tworzona jest dla każdej funkcji osobno. W x86 argumenty potrzebne do wywołania funkcji wkłada się na stos w odwotnej kolejności. Podczas wykonywania funkcji na stos należy odłożyć wartość ebp (base pointer), do ebp wpiszemy wartość wskaźnika stosu esp, dzięki temu za pomocą ebp będziemy odnosić się do parameterów na stosie nawet, jeżeli w trakcie wywoływania funkcji na stos odłożymy zmienne lokalne. 
+stos może wyglądać następująco:
+Parametr #N
+...
+Paramter #2
+Parametr #1     <- 8(%ebp)
+-----------------------------------
+Adres powrotu   <- 4(%eb)
+zapisany ebp    <- (%ebp)
+zmienna lok. 1  <- -4(%ebp)
+zmienna lok. 2	<- -8(%ebp) / %esp
+
+W 64 bitowej architekturze zamiast rejestrów ebp, esp mamy kolejno rbp i rsp. 
+Wywoływanie zewnętrznych funkcji np. z biblioteki C najczęściej wymaga przekazania parametrów. W x86 parametry odkładane są na stosie. W architekturze parametry są przekazywane przez w rejestrach. 
+%rdi  - pierwszy parametr
+%rsi  - drugi parametr
+%rdx  - trzeci
+%rcx  - czwarty
+%r8   - piąty
+%r9   - szósty
+
+Każdy następny przekazywany jest na stosie

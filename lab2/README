@@ -1,0 +1,6 @@
+# Autor:
+# Olaf Krawczyk 218164
+# Data: 03.04.2016
+#
+
+Program hexbin konwertuje liczbę w postaci szesnastkowej podaną przez użytkownika z STDIN na binarną. Wynik konwersji wypisuje na STDOUT.
