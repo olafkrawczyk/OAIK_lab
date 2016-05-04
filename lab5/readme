@@ -1,0 +1,17 @@
+# 04.05.2016
+# Olaf Krawczyk
+# 218164
+
+
+0. Pomiar czasu obliczenia całki dla różnych precyzji:
+	- float (single)
+	- double (dobule precision)
+	Za pomocą funkcji rtdsc. Przy pomiarach zastosowane zaokrąglenie 
+	round to nearest.
+1. Przepisanie kodu funkcji całkującej z FPU na SSE. Również dla dwóch precyzji (single,
+   double). Porównanie czasu wykonania obliczeń z poprzednio uzyskanymi wynikami. 
+
+2. Zrównoleglenie obliczeń na poziomie instrukcji dla SSE w single i double. Wyniki powinny
+   w teorii wyglądać następująco:
+	float  4x szybciej
+	double 2x szybciej 
