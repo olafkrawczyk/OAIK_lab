@@ -3,7 +3,7 @@
 # 218164
 
 
-0. Pomiar czasu obliczenia całki dla różnych precyzji:
+0. Pomiar czasu obliczenia całki dla różnych precyzji FPU:
 	- float (single)
 	- double (dobule precision)
 	Za pomocą funkcji rtdsc. Przy pomiarach zastosowane zaokrąglenie 
@@ -15,3 +15,21 @@
    w teorii wyglądać następująco:
 	float  4x szybciej
 	double 2x szybciej 
+
+
+-------------------------------------------
+0. Poprawnie udało się zmierzyć czas wykonywania obliczen na FPU z wykorzystaniem modulu rdtsc.
+1. Przepisanie algorytmu liczącego całkę w FPU do SSE w dwóch wersjach (double oraz float) również przebiegło pomyślnie. 
+   Podczas porównywania wyników z działania SEE dla float i double widać wyraźną różnicę w dokładności wyniku. Dla double
+   wynik calkowania jest bliższy wynikowi z wolframalpha.com dla tej samej dokładności całkowania (10^6).
+
+2. SIMD
+   Przepisanie algorytmu tak, żeby operacje byłby wykonywane równolegle niestety nie zakończyło się powodzeniem. Wyniki 
+    uzyskane tą metodą wyglądają następująco:
+    Calka SIMD sd: 13.085874
+    Calka SIMD sf: 15.180272
+    Calka sd: 13.779021
+    Calka sf: 13.740649
+    
+    Widać tu znaczną różnicę pomiędzy uzyskanymi wynikami dla SIMD, a oczekiwaną wartością całki (13.8155). Obliczenia
+    zgodnie z przewidywaniami zajmowały mniej czasu, niż dla obliczeń skalarnych.  

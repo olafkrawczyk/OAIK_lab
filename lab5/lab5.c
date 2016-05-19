@@ -1,18 +1,12 @@
 #include <stdio.h>
 #include "rdtsc.c"
 
+double calka_SIMDd();
+float  calka_SIMDf();
+float calka_sf();
+double calka_sd();
+
 double calka_s(int dokladnosc);
-// Parametry set fpu:
-// precyzja:
-// 	1 - single precision
-//	2 - double prec
-//	3 - extended double precision
-//	tryb zaokraglen:
-//	1 - round to nearest
-//	2 - round to down
-//	3 - round to uo
-//	4 - truncate
-//
 void set_fpu(int tryb_zaokr, int precyzja);
 unsigned short get_fpu();
 
@@ -41,7 +35,9 @@ double getDurationAVG(int precision){
 	return dur;
 }
 int main( int argc, char * argv[]){
-    double duration;
+    double duration, start, end, wynikd;
+    double sumDuration = 0;
+    float wynikf = 0;
     int i;
 
 	printf("\n");
@@ -52,4 +48,46 @@ int main( int argc, char * argv[]){
 	printf("PC: double precision\n");
 	duration = getDurationAVG(2);
   	printf("Duration: %f\n\n", duration);	
+
+    // Obliczenia dla SIMD double
+    sumDuration = 0;
+	for (i = 0; i < 100; i++){
+	    start = rdtsc();
+        wynikd = calka_SIMDd();
+	    end = rdtsc();
+	    sumDuration += end - start;
+	}
+    printf("\nSIMD (double) cykle: %f", sumDuration/100), 
+    printf("\nWynik: %f", wynikd);    
+    // Obliczenia dla SIMD float 
+    sumDuration = 0;
+	for (i = 0; i < 100; i++){
+	    start = rdtsc();
+        wynikf = calka_SIMDf();
+	    end = rdtsc();
+	    sumDuration += end - start;
+	}
+    printf("\nSIMD (float) cykle: %f", sumDuration/100), 
+    printf("\nWynik: %f", wynikf);    
+    // Obliczenia dla SSE double
+    sumDuration = 0;
+	for (i = 0; i < 100; i++){
+	    start = rdtsc();
+        wynikd = calka_sd();
+	    end = rdtsc();
+	    sumDuration += end - start;
+	}
+    printf("\nSSE (double) cykle: %f", sumDuration/100), 
+    printf("\nWynik: %f", wynikd);    
+    // Obliczenia dla SSE float
+    sumDuration = 0;
+	for (i = 0; i < 100; i++){
+	    start = rdtsc();
+        wynikf = calka_sf();
+	    end = rdtsc();
+	    sumDuration += end - start;
+	}
+    printf("\nSSE (float) cykle: %f", sumDuration/100), 
+    printf("\nWynik: %f\n", wynikf);    
 }
+
