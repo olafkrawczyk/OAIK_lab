@@ -1,0 +1,35 @@
+Uruchomienie lab6
+./lab6
+Czas wykoniania tradycyjnego mnozenia dla n = 2: 	630.40
+Czas wykoniania nowego mnozenia dla n = 2:	 	466.40
+
+Czas wykoniania tradycyjnego mnozenia dla n = 4: 	654.40
+Czas wykoniania nowego mnozenia dla n = 4:	 	1212.80
+
+Czas wykoniania tradycyjnego mnozenia dla n = 8: 	1693.60
+Czas wykoniania nowego mnozenia dla n = 8:	 	1812.80
+
+Czas wykoniania tradycyjnego mnozenia dla n = 16: 	6449.60
+Czas wykoniania nowego mnozenia dla n = 16:	 	6572.80
+
+Czas wykoniania tradycyjnego mnozenia dla n = 32: 	24732.80
+Czas wykoniania nowego mnozenia dla n = 32:	 	25864.80
+
+Czas wykoniania tradycyjnego mnozenia dla n = 64: 	92996.80
+Czas wykoniania nowego mnozenia dla n = 64:	 	103786.40
+
+Czas wykoniania tradycyjnego mnozenia dla n = 128: 	452330.90
+Czas wykoniania nowego mnozenia dla n = 128:	 	463774.00
+
+Czas wykoniania tradycyjnego mnozenia dla n = 256: 	1114478.80
+Czas wykoniania nowego mnozenia dla n = 256:	 	1229072.70
+
+Czas wykoniania tradycyjnego mnozenia dla n = 512: 	3879443.90
+Czas wykoniania nowego mnozenia dla n = 512:	 	5001448.90
+
+Czas wykoniania tradycyjnego mnozenia dla n = 1024: 	9466736.00
+Czas wykoniania nowego mnozenia dla n = 1024:	 	26788727.10
+
+Czas wykoniania tradycyjnego mnozenia dla n = 2048: 	36278099.20
+Czas wykoniania nowego mnozenia dla n = 2048:	 	121131473.90
+

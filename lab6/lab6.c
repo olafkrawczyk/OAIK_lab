@@ -77,23 +77,55 @@ void printVec(float *vec, int n){
 int main(){
 	int n = 5;
 	int testN = 10;
-	int i,j;
+	int i,j,k;
 	long long int start, stop;
+    double timeNormal, timeNew; // zmienne przechowujace czasy wykonania dla mnozen
+                               // w tradycyjny sposób oraz nowy
 	float **matrix;
 	float *vec, *tmp;
 
 
 	srand(time(NULL));
-	
-	vec = malloc(sizeof(float)*n);
-	matrix = malloc(sizeof(float*)*n);
-	for (i = 0; i < n; i++){
-		matrix[i] = malloc(sizeof(float) *n);
-	}
+
+    //Pętla wykonująca mnożenia dla rozmiarów 
+    //od 2 do 1024  z postępem geometrycznym 2
+    //
+
+    for (j = 2; j < 2049; j*=2){
+    timeNormal = 0;
+    timeNew = 0;
+
+       for(k = 0; k < 10; k++){ 
+        	vec = malloc(sizeof(float)*j);
+        	matrix = malloc(sizeof(float*)*j);
+
+        	for (i = 0; i < j; i++){
+        		matrix[i] = malloc(sizeof(float) *j);
+        	}
+
+        	genMatrix(matrix, j);
+        	genVec(vec, j);
+
+            start = rdtsc();
+            tmp = mullAsUsual(matrix, vec, j);
+            stop = rdtsc();
+            timeNormal += (double)(stop - start);
+
+            start = rdtsc();
+            tmp = mullNewWay(matrix, vec, j);
+            stop = rdtsc();
+            timeNew += (double)(stop - start);
+        }
+        
+       //Wyswietlenie wynikow
+       
+       printf("Czas wykoniania tradycyjnego mnozenia dla n = %d: \t%.2f\n",j, timeNormal/10);
+       printf("Czas wykoniania nowego mnozenia dla n = %d:\t \t%.2f\n",j, timeNew/10);
+       printf("\n");
+    }    
 		
-	genMatrix(matrix, n);
-	genVec(vec, n);
-	printMat(matrix,n);
+
+/*	printMat(matrix,n);
 
 	printf("----- normal mull ----\n");
 	tmp = mullAsUsual(matrix, vec, n);
@@ -103,10 +135,6 @@ int main(){
 	printVec(tmp, n);
 	printf("\n");
 
+*/
 
-	for (i = 2; i < 1025; i*2){
-		for(j = 0; j < 10; j++){
-			
-		}
-	}
 }

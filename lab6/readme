@@ -1,0 +1,34 @@
+Program lab6, pokazuje różnice w czasie potrzebnym na dostęp do pamięci w taktach procesora. Do zobrazowania
+różnic pomiędzy czasami dostępów do pamięci L1 i L2 oraz RAM wykorzystaliśmy dwa algorytmy wykonujące mnożenie macierzy
+kwadratowych przez wektor. Pierwzy algorytm mnożył macierz przez wektor zgodnie z definicją, tj. kolejne elementy 
+znajdujące się w tym samym wierszu macierzy były mnożone przez odpowiadające im elementy wektora, następnie sumowane oraz
+zapisywane w wektorze wynikowym. Wynik działania drugiego algorytmu był identyczny, z tym że mnożone były kolejne elementy kolumny macierzy przez odpowiadające im elementy wektora. 
+
+Elementami macierzy w programie lab6 są losowe liczby typu float. Macierz jest zapisana w pamięci komputera w postaci n
+elementowych tablic, każda tablica to jeden wiersz macierzy. Elementy
+tablicy są ulokowane w pamięci w ciągły sposób. Dla macierzy nxn zaalokujemy w pamięci n tablci n elementowych. 
+
+Podczas wykonywania operacji na elementach macierzy do pamięci podręcznej procesora trafiają używane elementy, tak żeby w 
+następnej operacji dostęp do tej samej danej był możliwie najkrótszy. Pamięć cache jest zorganizowana poziomowo. 
+L1 - pamięć niewielkiego rozmiaru, około 32 kB za to najszybsza
+L2 - pamięć o rozmiarze od 64 kB do 12 MB, odpowiednio wolniejsza do L1
+L3 - najbardziej pojemna i najwolniejsza pamięć
+
+Aby uruchomić program należy kolejno pisać: make; make test. Wynikiem działania programu są średnie ilości taktów 
+potrzebnych do wykonania operacji obliczone na podstawie dziesięciu pomiarów. Szerokości  macierzy na których wykonywane były pomiary są następujace 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048. Dla każdego pomiaru była generowana nowa losowa
+macierz, wypełniona liczbami typu float. 
+
+Ponieważ nie miałem możliwości uruchomienia programu na LAK'u w pliku wyniki.txt zapisałem wyniki działania programu
+na laptopie z procesorem i5 3320m.
+
+Na podstawie wyników można stwierdzić, że różnice w czasie wynoniania są widoczne już dla macierzy o szerokości 4,
+dla macierzy 2x2 występuje pewna anomalia, czas wykonania tradycyjnego mnożenia jest dłuższy od nowego. Duża różnica
+jest zauważalna dla macierzy 4x4 czas wykonania nowego mnożenia jest tam dwukrotnie większy, niż tradycynego. Następne 
+pomiary dla macierzy o szerokościach 8, 16, 32, 64, 128, 256 są bardzo zbliżone do siebie, różnia sie czasem wykonania o 
+około kilkanaście procent. Znaczące różnice zaczynają dla macierzy o szerokości 512. Czas działania nowego algorytmu 
+jest tutaj prawie 3 razy dłuższy niż dla tradycyjnego mnożenia. Dalej te różnice są jeszcze większe. 
+
+Czasy wykonania różnią się znacząco ponieważ, przy dużej ilośći elementów drugi algorytm znacznie częściej odwołuje się
+do pamięci L2 która jest około dwa razy wolniejsza od pamięci L1. 
+
+
